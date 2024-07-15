@@ -1,0 +1,31 @@
+<div>
+    <div style="padding: 20px; background-color: cornflowerblue;font-weight: 500;font-size: 20px; text-align: center;">Add workout</div>
+
+    <div *ngIf="errmsg()" style="background-color: crimson; padding: 18px;border-radius: 6px;margin: 35px; margin-bottom: -10px;display: flex;justify-content: space-between;align-items: center;">
+        <div>{{ errmsg() }}</div>
+        <mat-icon>close</mat-icon>
+    </div>
+
+    <div style="padding: 50px; text-align: start;">
+        <mat-form-field style="width: 300px;">
+            <mat-label>Add User</mat-label>
+            <input [(ngModel)]="addUser" matInput placeholder="Ex. John">
+        </mat-form-field><br>
+
+        <mat-form-field style="width: 300px;">
+            <mat-label>Add workout</mat-label>
+            <mat-select [(ngModel)]="workout" >
+                @for (work of workouts; track work) {
+                <mat-option [value]="work.value">{{work.viewValue}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field><br>
+
+        <mat-form-field style="width: 300px;">
+            <mat-label>Add minutes </mat-label>
+            <input type="number" [(ngModel)]="minutes" matInput>
+        </mat-form-field><br>
+
+        <button (click)="handleBtn()" style="margin-left: auto;" mat-flat-button>Add workout</button>
+    </div>
+</div>

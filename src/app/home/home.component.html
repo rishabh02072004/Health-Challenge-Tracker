@@ -1,0 +1,47 @@
+<div class="container">
+    <div style="display: flex; align-items: top; justify-content: space-between;margin-bottom: 20px;flex-wrap: wrap;" class="topbar">
+        <div style="align-items: start;">
+            <mat-form-field style="width: 300px;">
+                <mat-label>Search User</mat-label>
+                <input [(ngModel)]="searchUser" matInput placeholder="Ex. John">
+            </mat-form-field>
+
+            <mat-form-field style="margin-left: 40px;">
+                <mat-label>Filter by activities</mat-label>
+                <mat-select [(ngModel)]="filterWorkout" >
+                    @for (work of workouts; track work) {
+                    <mat-option [value]="work.value">{{work.viewValue}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <button (click)="handleChangeWorkout()" style="margin-left: 20px;" mat-flat-button>Search</button>
+        </div>
+
+        <button (click)="addWorkout()" style="display: block;" mat-flat-button>Add Workout</button>
+    </div>
+
+    <div style="overflow-x:auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Workouts</th>
+                    <th>Number of workouts</th>
+                    <th>Total workout minutes</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr *ngFor="let user of filterdListData()" [id]="user.id">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ getWorkout(user.workouts) }}</td>
+                    <td>{{ user.workouts.length }}</td>
+                    <td>{{ calculateMinute(user.workouts) }} mins</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<mat-sidenav-container>
+    <mat-sidenav
+      [(opened)]="sidenavStatus"
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+    >
+      <div style="color: #ff2e63;text-align: center;padding: 20px; font-size: 28px; font-weight: 800;line-height: 28px;">
+        Health Challenge Tracker
+      </div>
+
+      <div style="text-align: center;margin-top: 20px;">
+        <button *ngIf="url == '/'" [routerLink]="'dashboard'" mat-fab extended>
+          <mat-icon>open_in_new</mat-icon>
+          View dashboard
+        </button>
+        <button *ngIf="url == '/dashboard'" [routerLink]="''" mat-fab extended>
+          <mat-icon>open_in_new</mat-icon>
+          Back
+        </button>
+      </div>
+
+      <div (click)="reset()">reset</div>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <div class="nav">
+        <div>
+          <button
+            *ngIf="showHamburgerMenuOnDesktopView || mobileQuery.matches"
+            class="nav__menu"
+            (click)="onMenuClick()"
+          >
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+  
+        <div class="nav__login">
+          <p
+            class="nav__login--text"
+            style="cursor: pointer"
+            (click)="handleLogout()"
+          >
+            Logout
+          </p>
+          <div class="nav__login--imgContainer">
+            <img
+              src="https://banglarshiksha.gov.in/assets/frontend/images/login_placeholder.jpg"
+              height="35px"
+            />
+          </div>
+        </div>
+      </div>
+  
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

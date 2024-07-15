@@ -1,0 +1,13 @@
+<mat-form-field>
+  <mat-label>Select User</mat-label>
+  <mat-select [(ngModel)]="selectedUser" (ngModelChange)="renderChart()" >
+    @for (user of userDropdown; track user) {
+      <mat-option [value]="user">{{user}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+<div style="display: flex; max-height: 60vh;justify-content: center; margin: 20px;" class="charst">
+    <canvas *ngIf="isBrowser" id="chartsss" width="400">
+</canvas>
+</div>
